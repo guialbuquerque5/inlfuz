@@ -1,4 +1,4 @@
-import React,{Fragment, useState, Component} from 'react';
+import React,{Fragment, useState, Component, Props} from 'react';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 //import { render } from 'react-dom';
@@ -90,5 +90,5 @@ class Register extends Component<IState> {
   }
 }
 
-export default connect()(Register)
+export default connect(null, {setAlert})(Register)
 

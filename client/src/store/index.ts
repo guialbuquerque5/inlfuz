@@ -1,10 +1,19 @@
-import { alertReducer } from './alert/reducers'
-import { combineReducers } from 'redux';
 
-const rootReducer = combineReducers({
-  alert: alertReducer
-})
+import { createStore, applyMiddleware, Store } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import { UsersState } from './ducks/users/types';
 
-export type AppState = ReturnType<typeof rootReducer>
+import rootReducer from './ducks/rootReducer';
+import rootSaga from './ducks/rootSaga';
 
-//export default AppState
+export interface ApplicationState {
+  repositories: UsersState
+}
+
+const sagaMiddleware = createSagaMiddleware();
+
+const store: Store<ApplicationState> = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+
+sagaMiddleware.run(rootSaga);
+
+export default store;

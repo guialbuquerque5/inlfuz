@@ -1,16 +1,28 @@
 import uuid from 'uuid'
+/**
+ * Action types
+ */
+export enum AlertTypes {
+  SET_ALERT = '@alerts/SET_ALERT',
+  REMOVE_ALERT = '@alerts/REMOVE_ALERT'
+}
+/**
+ * Data types
+ */
 export interface Alert {
   id: string, 
   msg: string
   alertType: string
 }
+/**
+ * State type
+ */
 export interface AlertState {
   alerts: Alert[]
 }
   
-export const SET_ALERT = 'SET_ALERT'
-export const REMOVE_ALERT = 'REMOVE_ALERT'
 
+/*
 interface SetAlertAction {
   type: typeof SET_ALERT
   payload: Alert
@@ -22,5 +34,5 @@ interface RemoveAlertAction {
     id: typeof uuid.v4
   }
 }
-
-export type AlertActionTypes = SetAlertAction | RemoveAlertAction
+*/
+//export type AlertActionTypes = SetAlertAction | RemoveAlertAction

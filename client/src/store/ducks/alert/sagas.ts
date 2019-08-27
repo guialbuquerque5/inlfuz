@@ -1,8 +1,10 @@
 import { call, put} from 'redux-saga/effects';
 //import api from './api'
 
-import { loadSuccess, loadFailure} from './actions';
+import { setAlert, removeAlert} from './actions';
 
+
+/*
 export function* load(){
     try{    
       //const response = yield call(api.get, 'users')
@@ -13,3 +15,4 @@ export function* load(){
       yield put(loadFailure())
     }
 }
+*/

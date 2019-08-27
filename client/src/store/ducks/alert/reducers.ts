@@ -1,3 +1,6 @@
+import { setAlert, removeAlert} from './actions';
+
+/*
 import { AlertState, AlertActionTypes, SET_ALERT, REMOVE_ALERT } from './types';
 import { stat } from 'fs';
 
@@ -24,3 +27,4 @@ export function alertReducer(
       return state;
   }
 }
+*/

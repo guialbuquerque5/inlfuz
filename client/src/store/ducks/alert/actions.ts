@@ -1,8 +1,7 @@
-import { Alert, SET_ALERT, REMOVE_ALERT, AlertActionTypes } from './types';
+import { action } from 'typesafe-actions';
+import { AlertTypes, Alert } from './types';
 
-export function setAlert(newAlert: Alert): AlertActionTypes {
-  return {
-    type: SET_ALERT,
-    payload: newAlert
-  }
-}
+
+export const setAlert = (alert: Alert) => action(AlertTypes.SET_ALERT, {alert});
+
+export const removeAlert = (alertId: string) => action(AlertTypes.REMOVE_ALERT, {alertId});

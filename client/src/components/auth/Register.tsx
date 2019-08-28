@@ -108,7 +108,7 @@ class Register extends Component<Props> {
 }
 
 const mapStateToProps = (state: ApplicationState) => ({
-  alerts: state.alerts
+  alerts: state.alert
 });
 
 

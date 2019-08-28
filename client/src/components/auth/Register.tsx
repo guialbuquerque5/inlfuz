@@ -1,7 +1,17 @@
-import React,{Fragment, useState, Component, Props} from 'react';
+import React,{Fragment, useState, Component} from 'react';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
+
+import { bindActionCreators, Dispatch } from 'redux';
+
+import { ApplicationState } from '../../store'
+
+import * as AlertActions from '../../store/ducks/alert/actions'
+
 //import { render } from 'react-dom';
+
+
+
 
 interface IState {
     name: String,
@@ -9,25 +19,32 @@ interface IState {
     password: String,
     password2: String
 }
+interface IProps {
+  state: IState
+  setAlert(msg: string): void
+}
 
-class Register extends Component<IState> {
+type Props = IState & IProps
+
+
+class Register extends Component<Props> {
   state: IState = {
     name: '',
     email: '',
     password: '',
     password2: ''
   };
-    
+  count = 1
   private onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {name, value}: {name: string; value: string} = e.target;
     this.setState({
-        [name]: value
+      [name]: value
     })
   }
   private onSubmit = (e: React.FormEvent<HTMLFormElement>) =>{
     e.preventDefault();
     if(this.state.password !== this.state.password2){
-    console.log('Passwords do not match');  
+      this.props.setAlert('Passwords do not match' + this.count++);  
     } else {
       const {name, email, password} =this.state
       console.log(JSON.stringify({name, email, password}))
@@ -65,7 +82,7 @@ class Register extends Component<IState> {
                 type="password"
                 placeholder="Password"
                 name="password"
-                minLength={6}
+                minLength={1}
                 value = {String(password)}
                 onChange={e => this.onChange(e)}
               />
@@ -75,7 +92,7 @@ class Register extends Component<IState> {
                 type="password"
                 placeholder="Confirm Password"
                 name="password2"
-                minLength={6}
+                minLength={1}
                 value = {String(password2)}
                 onChange={e => this.onChange(e)}
               />
@@ -90,5 +107,12 @@ class Register extends Component<IState> {
   }
 }
 
-export default connect(null, {setAlert})(Register)
+const mapStateToProps = (state: ApplicationState) => ({
+  alerts: state.alerts
+});
+
+
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(AlertActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register)
 

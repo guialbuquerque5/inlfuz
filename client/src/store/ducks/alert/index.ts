@@ -1,7 +1,5 @@
 import { Reducer } from 'redux'
 import { AlertState, AlertTypes, Alert } from './types'
-import { statement } from '@babel/template';
-import { action } from 'typesafe-actions';
 
 const INITIAL_STATE: AlertState = {
   alerts: [],
@@ -10,10 +8,10 @@ const INITIAL_STATE: AlertState = {
 const reducer: Reducer<AlertState> = (state = INITIAL_STATE, action) => {
   switch(action.type){
     case AlertTypes.SET_ALERT:
-      return {...state, alerts: action.alert}
+      console.log(action)
+      return  {alerts:[...state.alerts,action.payload]}
     case AlertTypes.REMOVE_ALERT:
-      //return {...state.alerts.filter(alert => alert.id !== action.alertId)}
-      return {...state}
+      return {alerts:[...state.alerts.filter(alert => alert.id !== action.alertId)]}
       default:
       return state;
   }

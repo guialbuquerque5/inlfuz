@@ -9,7 +9,7 @@ import './App.css';
 
 const App = () =>  {
   return (
-    /*
+    
     <Router>
       <Fragment>
         <NavBar></NavBar>
@@ -22,8 +22,8 @@ const App = () =>  {
         </section>
       </Fragment>
     </Router>
-    */
-   <div></div>
+    
+   
   );
 }
 export default App;

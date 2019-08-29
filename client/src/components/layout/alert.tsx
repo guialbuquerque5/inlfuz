@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-
+import propTypes from 'prop-types'
 import { Alert, AlertTypes } from '../../store/ducks/alert/types'
-
 import { ApplicationState } from '../../store'
 import {connect} from 'react-redux'
-import { render } from 'react-dom';
 
 
 interface Props{
@@ -12,20 +10,25 @@ interface Props{
 }
 
 
-const AlertComponent = (alerts: Alert[]) => {
-    const alertss = alerts
-    return(
-    alertss.map(alert => (
-    <div key = {alert.id} className = {`alert alert-${alert.alertType}`}>
-        {alert.msg}
-    </div>
-    )))
+class AlertComponent extends Component<Props>{
+    
+    render() {
+        const alerts = this.props.alerts
+        console.log(alerts)
+        return(
+            alerts.map(alert => (
+            <div key = {alert.id} className = {`alert alert-${alert.alertType}`}>
+                {alert.msg}
+            </div>
+            ))
+        )
+    }
 }
 
-
 function mapStateToProps(state: ApplicationState){
-    const {alert} = state
-    return {alerts: alert.alerts}
+    const {alerts} = state.alert
+    return {alerts}
 };
 
-export default connect(mapStateToProps)(AlertComponent)
+
+export default connect(mapStateToProps)(AlertComponent);
